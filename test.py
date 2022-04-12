@@ -1,23 +1,30 @@
-import re
+dictFinal = {
+  '@type': 'MessageCard',
+  '@context': 'http://schema.org/extensions',
+  'themeColor': '2DC72D',
+  'summary': 'HostOutOfMemory',
+  'title': 'Prometheus Alert (Resolved)',
+  'sections': [
+    {
+      'activityTitle': '[Node memory is filling up (< 10% left)n  VALUE = 9.410993253703694n  LABELS = map[instance:192.168.0.159:9100 job:nodeproxy servidor:Agataproxybpm]](https://agatabpm.emetel.local/alertmanager)',
+      'facts': [
+        {
+          'name': 'description',
+          'value': 'Node memory is filling up (< 10% left)n  VALUE = 9.410993253703694n  LABELS = map[instance:192.168.0.159:9100 job:nodeproxy servidor:Agataproxybpm]'
+        },
+        {
+          'name': 'title',
+          'value': 'Host out of memory (instance 192.168.0.159:9100)'
+        },
+        { 'name': 'alertname', 'value': 'HostOutOfMemory' },
+        { 'name': 'instance', 'value': '192.168.0.159:9100' },
+        { 'name': 'job', 'value': 'nodeproxy' },
+        { 'name': 'servidor', 'value': 'Agataproxybpm' },
+        { 'name': 'severity', 'value': 'warning' }
+      ],
+      'markdown': 'true'
+    }
+  ]
+}
 
-# function that returns function names from solana block code
-def solana(code):
-    """
-    :param code: solana block code
-    :return: list of function names find with re
-    """
-    return re.findall(r'(?<=function )[a-zA-Z0-9_]+', code)
-
-
-code = """// SPDX-License-Identifier: MIT OR Apache-2.0
-
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721BurnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
-function mint(string memory tokenCID) public returns (uint256 tokenId) {
-    tokenId = _mint(tokenCID);
-  }
-"""
-
-print(solana(code))
+print(dict)
